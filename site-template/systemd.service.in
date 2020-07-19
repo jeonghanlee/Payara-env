@@ -1,0 +1,42 @@
+[Unit]
+Description=Payara Server
+Documentation=https://github.com/jeonghanlee/Payara-env
+Description=@TARGET_NAME@ Service
+Documentation=@DOCURL@
+After=network.target remote-fs.target
+
+[Service]
+
+User=@USERID@
+Group=@GROUPID@
+
+WorkingDirectory=/usr/local/payara/glassfish
+Environment=PATH=/usr/local/payara/glassfish/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/payara/glassfish/bin/asadmin start-domain production
+ExecReload=/usr/local/payara/glassfish/bin/asadmin restart-domain production
+ExecStop=/usr/local/payara/glassfish/bin/asadmin stop-domain production
+TimeoutStartSec=300
+TimeoutStopSec=30
+
+[Install]
+WantedBy = multi-user.target
+
+
+[Service]
+# User=elasticsearch
+# Group=elasticsearch
+
+ExecStart=_JAVAPATH_/java _JAVAOPTS_ -jar _CFPATH_/_CHANNELFINDER_JAR_NAME_
+SuccessExitStatus=143 
+
+ExecReload=kill -SIGINT $MAINPID
+KillMode=process
+
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+Alias=cf.service

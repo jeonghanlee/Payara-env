@@ -46,12 +46,22 @@ else
 endif
 
 
-.PHONY: build conf
+.PHONY: build clean.build conf
 
-## Build Source
+# Build Source
 build:
-	echo "mvn $(MVN_OPTS) -f $(SRC_PATH) clean install -Dmaven.test.skip=true"
-	$(QUIET) mvn $(MVN_OPTS) -f $(SRC_PATH) clean install -Dmaven.test.skip=true
+	$(QUIET)mvn -f $(SRC_PATH)/pom.xml  \
+	-B -V -ff -e clean install \
+	-Dmaven.test.skip=true \
+	-Dmaven.javadoc.skip=true \
+	-Djavax.net.ssl.trustStore=$(JAVA_HOME)/jre/lib/security/cacerts \
+	-Djavax.xml.accessExternalSchema=all \
+	-Dbuild.number=$(SRC_VERSION) \
+	-Dsurefire.rerunFailingTestsCount=2
+
+
+clean.build:
+	$(QUIET) rm -rf ~/.m2/repository/* /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
 
 ## Copy the site specific files into sources
 conf:

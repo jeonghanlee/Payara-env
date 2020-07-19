@@ -18,6 +18,9 @@ JAVA_OPTS:=-Xms512m -Xmx512m
 
 MVN_OPTS:=
 
+USERID:=payara
+GROUPID:=payara
+
 SYSTEMD_PATH:=/etc/systemd/system
 SYSTEMD_FILENAME:=${APPNAME}.service
 
