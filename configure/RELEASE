@@ -1,10 +1,10 @@
 
-APPNAME:=Payara
+APPNAME:=payara
 
 ## Where the Source repository SRC_URL/SRC_NAME
 ##
 SRC_URL:=https://github.com/payara
-SRC_NAME:=${APPNAME}
+SRC_NAME:=Payara
 
 
 ## Which the source tag / branch / hash id would like to use

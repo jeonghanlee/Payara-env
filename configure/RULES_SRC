@@ -50,14 +50,13 @@ endif
 
 # Build Source
 build:
-	$(QUIET)mvn -f $(SRC_PATH)/pom.xml  \
-	-B -V -ff -e clean install \
+	$(QUIET)mvn -f $(SRC_PATH)/pom.xml -am \
+	-B -V -ff -q clean install -PQuickBuild \
 	-Dmaven.test.skip=true \
 	-Dmaven.javadoc.skip=true \
 	-Djavax.net.ssl.trustStore=$(JAVA_HOME)/jre/lib/security/cacerts \
 	-Djavax.xml.accessExternalSchema=all \
-	-Dbuild.number=$(SRC_VERSION) \
-	-Dsurefire.rerunFailingTestsCount=2
+	-Dbuild.number=$(SRC_VERSION) 
 
 
 clean.build:
