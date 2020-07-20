@@ -24,7 +24,6 @@ help:
 
 default: help
 
-
 ## Clone Source
 init:
 ifeq "$(INIT_SRC)" "1"
@@ -45,7 +44,6 @@ else
 	$(QUIET)echo "There is no $(SRC_PATH)."
 endif
 
-
 .PHONY: build clean.build conf
 
 # Build Source
@@ -64,8 +62,8 @@ clean.build:
 
 ## Copy the site specific files into sources
 conf:
-	$(QUIET)sed -e "s:_KEYSTORE_:$(KEYSTORE_FILENAME):g" \
-		    -e "s:_CFLDIF_:$(CFLDIF_FILENAME):g" \
-		    < $(SITE_TEMPLATE_PATH)/application.properties.in \
-		    > $(SITE_TEMPLATE_PATH)/application.properties
-	$(QUIET)cp $(SITE_TEMPLATE_PATH)/application.properties $(SITE_SPECIFIC_FILES_PATH)/
+#	$(QUIET)sed -e "s:_KEYSTORE_:$(KEYSTORE_FILENAME):g" \
+#		    -e "s:_CFLDIF_:$(CFLDIF_FILENAME):g" \
+#		    < $(SITE_TEMPLATE_PATH)/application.properties.in \
+#		    > $(SITE_TEMPLATE_PATH)/application.properties
+#	$(QUIET)cp $(SITE_TEMPLATE_PATH)/application.properties $(SITE_SPECIFIC_FILES_PATH)/

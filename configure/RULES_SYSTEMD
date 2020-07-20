@@ -4,10 +4,13 @@
 #
 #
 sd_config:
-	$(QUIET)sed -e "s:@PYTHONPATH@:$(INSTALL_LOCATION):g" \
-		    -e "s:@USERID@:$(USERID):g"  \
-		    -e "s:@GROUPID@:$(GROUPID):g"  \
-		    < $(SITE_TEMPLATE_PATH)/systemd.service.in > $(SITE_TEMPLATE_PATH)/$(SYSTEMD_FILENAME)
+	$(QUIET)sed -e "s:@TARGET_NAME@:$(APPNAME):g" \
+		-e "s:@JAVA_PATH@:$(JAVA_PATH):g" \
+		-e "s:@USERID@:$(USERID):g"      \
+		-e "s:@GROUPID@:$(GROUPID):g"    \
+		-e "s|@DOCURL@|$(DOCURL)|g"      \
+		-e "s:@INSTALL_LOCATION@:$(INSTALL_LOCATION):g" \
+		< $(SITE_TEMPLATE_PATH)/systemd.service.in > $(SITE_TEMPLATE_PATH)/$(SYSTEMD_FILENAME)
 #
 #	
 sd_install: sd_config
@@ -32,8 +35,7 @@ sd_restart:
 #
 # We ignore its error
 sd_clean:
-	-$(QUIET)$(SUDO) systemctl disable $(SYSTEMD_FILENAME)
-	-$(QUIET)$(SUDO) rm -f $(SYSTEMD_PATH)/$(SYSTEMD_FILENAME)
+	$(if $(wildcard $(SYSTEMD_PATH)/$(SYSTEMD_FILENAME)), $(QUIET)$(SUDO) rm -f $(SYSTEMD_PATH)/$(SYSTEMD_FILENAME))
 #
 #
 sd_enable:
@@ -42,5 +44,4 @@ sd_enable:
 #
 sd_disable:
 	$(if $(wildcard $(SYSTEMD_PATH)/$(SYSTEMD_FILENAME)), $(SUDO) systemctl disable $(SYSTEMD_FILENAME))
-#
 #
