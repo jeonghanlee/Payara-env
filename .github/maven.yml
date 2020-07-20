@@ -26,4 +26,3 @@ jobs:
         mvn --version
     - run: sudo apt-get install make tree git 
     - run: make vars
-    - run: make exist

@@ -1,3 +1,7 @@
+
+# Log information
+
+```bash
 Payara-src/appserver/packager/docker/target/docker.zip
 
 
@@ -28,7 +32,7 @@ Payara-src/appserver/packager/docker/target/docker.zip
 [INFO] [exec] Information stored in this file will be used by
 [INFO] [exec] administration commands to manage this domain.
 [INFO] [exec] Command create-domain executed successfully.
-[INFO] 
+[INFO]
 [INFO] --- glassfishbuild-maven-plugin:3.2.20.payara-p1:exec (create-production-domain) @ payara ---
 [INFO] executable: /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/stage/payara5/bin/asadmin
 [INFO] commandLineArgs: --user admin create-domain --template=/home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/stage/payara5/glassfish/common/templates/gf/production-domain.jar --nopassword --savelogin=true --checkports=false --adminport 4848 --instanceport 8080 --keytooloptions CN=localhost production
@@ -59,7 +63,7 @@ Payara-src/appserver/packager/docker/target/docker.zip
 [INFO] [exec] Information stored in this file will be used by
 [INFO] [exec] administration commands to manage this domain.
 [INFO] [exec] Command create-domain executed successfully.
-[INFO] 
+[INFO]
 [INFO] --- maven-antrun-plugin:1.8:run (foo) @ payara ---
 [INFO] Executing tasks
 
@@ -70,13 +74,14 @@ main:
      [echo] Parent is org.glassfish.main.distributions:distributions:pom:5.192
      [copy] Copying 1 file to /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/classes/META-INF
 [INFO] Executed tasks
-[INFO] 
+[INFO]
 [INFO] --- glassfishbuild-maven-plugin:3.2.20.payara-p1:zip (default-zip) @ payara ---
 [INFO] duplicate: preserve
 [INFO] file set : /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/stage (excludes: [], includes: [**/bin/*, **/bin/*.bat, **/lib/nadmin*])
 [INFO] file set : /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/stage (excludes: [**/bin/*, **/bin/*.bat, **/lib/nadmin*], includes: [])
 [INFO] [zip] Building zip: /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/payara.zip
-[INFO] 
+[INFO]
 [INFO] --- maven-install-plugin:3.0.0-M1:install (default-install) @ payara ---
 [INFO] Installing /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/target/payara.zip to /home/jhlee/.m2/repository/fish/payara/distributions/payara/5.192/payara-5.192.zip
 [INFO] Installing /home/jhlee/gitsrc/Payara-env/Payara-src/appserver/distributions/payara/pom.xml to /home/jhlee/.m2/repository/fish/payara/distributions/payara/5.192/payara-5.192.pom
+```
