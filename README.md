@@ -38,3 +38,59 @@ make init
 make build
 ```
 
+## Installation
+
+```bash
+Payara-env (master)$ make install
+
+Payara-env (master)$ make exist
+tree -aL 1 /opt/payara
+/opt/payara
+├── bin
+├── glassfish
+├── h2db
+├── javadb
+├── META-INF
+├── mq
+├── README.txt
+└── .versions
+```
+
+## Run the Payra service
+
+* systemd service
+
+We can use all generic systemd service commands. One can start it by `systemctl start payara`.
+
+```bash
+Payara-env (master)$ systemctl start payara
+Payara-env (master)$ systemctl status payara
+● payara.service - payara Service
+   Loaded: loaded (/etc/systemd/system/payara.service; enabled; vendor preset: enabled)
+   Active: active (exited) since Mon 2020-07-20 13:54:36 PDT; 1min 48s ago
+     Docs: https://docs.payara.fish/community/docs/5.192/README.html
+  Process: 14130 ExecStart=/usr/bin/java -XX:+IgnoreUnrecognizedVMOptions -jar /opt/payara/glassfish/lib/client/appserver-cli.jar start-domain productio
+ Main PID: 14130 (code=exited, status=0/SUCCESS)
+    Tasks: 126 (limit: 4915)
+   Memory: 1.6G
+   CGroup: /system.slice/payara.service
+           └─14147 /usr/lib/jvm/java-1.8.0-amazon-corretto/bin/java -cp /opt/payara/glassfish/modules/glassfish.jar -XX:+UnlockDiagnosticVMOptions -XX:M
+           .....
+```
+
+* Web site
+
+<http://localhost:4848/>
+
+|![Payara Server](docs/payara_server.png)|
+| :---: |
+|**Figure 1** Payara Server Web Screenshot. |
+
+## Rules
+
+```bash
+make vars
+make sd_start
+make sd_status
+make uninstall
+```
