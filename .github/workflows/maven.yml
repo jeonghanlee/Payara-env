@@ -27,8 +27,6 @@ jobs:
     - run: sudo apt-get install make tree git 
     - run: |
         make vars
-#        make get.jdk
-#        make install.jdk
         java -version
         echo $JAVA_HOME
         echo $PATH
