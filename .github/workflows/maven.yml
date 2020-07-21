@@ -1,5 +1,5 @@
 
-name: Build Test
+name: Build
 
 on:
   push:
@@ -37,5 +37,6 @@ jobs:
     - run: make build
     - run : |
         make build.post
+        make install
         make exist
 
