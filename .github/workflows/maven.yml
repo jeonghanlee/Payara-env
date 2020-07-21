@@ -25,10 +25,18 @@ jobs:
         echo $PATH
         mvn --version
     - run: sudo apt-get install make tree git 
-    - run: make vars
+    - run: |
+        make vars
+        make get.jdk
+        make install.jdk
+        java -version
+        echo $JAVA_HOME
+        echo $PATH
+        mvn --version
     - run: |
         make init
+        make build.pre
         make build
-        make post.build
+        make build.post
         make exist
-        
+

@@ -1,6 +1,7 @@
 
 .PHONY: install uninstall reinstall src_install
 
+## Install into $(INSTALL_LOCATION), systemd service enable 
 install: src_install sd_install sd_enable
 
 src_install: src_version src_preinst
@@ -10,6 +11,7 @@ src_install: src_version src_preinst
 	$(QUIET)$(SUDO) cp -rp $(SRC_TARGET)/*  $(INSTALL_LOCATION)/
 	$(QUIET)$(SUDO)	chown -R $(USERID):$(GROUPID) $(INSTALL_LOCATION)
 
+## Stop, disable systemd serivce, and uninstall
 uninstall: sd_stop sd_disable sd_clean src_postrm
 	$(QUIET)echo "Removing $(INSTALL_LOCATION)..."
 	$(QUIET)$(SUDO) rm -rf $(INSTALL_LOCATION)/

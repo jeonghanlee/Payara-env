@@ -3,7 +3,7 @@
 
 # ## Build Source for Debian 10
 install.jdk:
-	$(QUIET) sudo apt install ./java-1.8.0-amazon-corretto-jdk_8.262.10-1_amd64.deb
+	$(QUIET) sudo apt install -y ./java-1.8.0-amazon-corretto-jdk_8.262.10-1_amd64.deb
 
 uninstall.jdk:
 	$(QUIET) sudo apt remove java-1.8.0-amazon-corretto-jdk

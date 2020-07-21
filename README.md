@@ -37,7 +37,7 @@ Press <enter> to keep the current choice[*], or type selection number: 1
 Payara-env (master)$ make vars
 Payara-env (master)$ make init
 Payara-env (master)$ make build
-Payara-env (master)$ make post.build
+Payara-env (master)$ make build.post
 ```
 
 ## Installation
@@ -86,13 +86,14 @@ Payara-env (master)$ systemctl status payara
 
 |![Payara Server](docs/payara_server.png)|
 | :---: |
-|**Figure 1** Payara Server Web Screenshot. |
+|**Figure 1** Payara Server Web Screenshot.|
 
 ## Rules
 
 ```bash
-make vars
-make sd_start
-make sd_status
+make sd_start (systemctl start payara)
+make sd_status (systemctl status payara)
+make sd_stop (systemctl stop payara)
+make sd_restart (systemctrl restart payara)
 make uninstall
 ```

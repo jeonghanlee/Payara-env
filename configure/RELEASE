@@ -1,16 +1,15 @@
 
 APPNAME:=payara
 
-## Where the Source repository SRC_URL/SRC_NAME
-##
+##- Where the Source repository SRC_URL/SRC_NAME
 SRC_URL:=https://github.com/payara
 SRC_NAME:=Payara
 
 
-## Which the source tag / branch / hash id would like to use
+##- Which the source tag / branch / hash id would like to use
 SRC_TAG:=tags/payara-server-5.192
 
-## Placeholder for the site-specific version control 
+##- Placeholder for the site-specific version control 
 SRC_VERSION:=5.192
 
 

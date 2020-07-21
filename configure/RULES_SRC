@@ -44,9 +44,9 @@ else
 	$(QUIET)echo "There is no $(SRC_PATH)."
 endif
 
-.PHONY: build clean.build conf
+.PHONY: build build.pre conf
 
-# Build Source
+## Build Source
 build:
 	$(QUIET)mvn -f $(SRC_PATH)/pom.xml -am \
 	-B -V -ff clean install -PQuickBuild \
@@ -55,12 +55,16 @@ build:
 	-Dbuild.number=$(SRC_VERSION) 
 
 
-clean.build:
+build.pre:
 	$(QUIET) rm -rf ~/.m2/repository/* /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
 
-## Copy the site specific files into sources
 
-post.build: change.masterpassword change.adminpassword keystore.update certs.update certs.clean
+.PHONEY: build.post change.masterpassword change.adminpassword keystore.update certs.update certs.clean
+
+
+## Update passwords keystore and cacerts
+build.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean
+
 
 
 conf:	 	
@@ -78,6 +82,7 @@ change.adminpassword:
 	sh "$(SRC_TARGET)/bin/asadmin" --user $(ADMIN_USER) --passwordfile=$(SITE_TEMPLATE_PATH)/.adminpassword change-admin-password --domaindir $(SRC_TARGET)/glassfish/domains/ --domain_name production
 	rm -f $(SITE_TEMPLATE_PATH)/.adminpassword
 
+.PHONEY: keystore.update keystore.convert keystore.delete keystore.genkeypair
 
 keystore.update: keystore.convert keystore.delete keystore.genkeypair
 
@@ -95,6 +100,7 @@ keystore.genkeypair:
 	$(JAVA_PATH)/keytool -genkeypair -alias s1as -dname "$(PAYARA_DN_NAME)" -keyalg RSA -keysize 2048 -validity 3650 -keystore $(SRC_TARGET)/glassfish/domains/production/config/keystore.jks -storepass $(MASTER_PASSWORD) -keypass $(MASTER_PASSWORD)
 	$(JAVA_PATH)/keytool -genkeypair -alias glassfish-instance -dname "$(PAYARA_DN_NAME)" -keyalg RSA -keysize 2048 -validity 3650 -keystore $(SRC_TARGET)/glassfish/domains/production/config/keystore.jks -storepass $(MASTER_PASSWORD) -keypass $(MASTER_PASSWORD)
 
+.PHONEY: certs.update certs.export certs.delete certs.import certs.clean
 
 certs.update: certs.export certs.delete certs.import
 
