@@ -1,5 +1,8 @@
 # Payara-env
 
+![Build](https://github.com/jeonghanlee/Payara-env/workflows/Build/badge.svg)
+![Linter Run](https://github.com/jeonghanlee/Payara-env/workflows/Linter%20Run/badge.svg)
+
 Even if the most latest version payara-server-5.2020.3, one needs `java 8` in order to build the Payara from its github repository.
 With OpenJDK 11, one can see error message such as
 
