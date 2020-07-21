@@ -34,8 +34,10 @@ Press <enter> to keep the current choice[*], or type selection number: 1
 ## Build
 
 ```bash
-make init
-make build
+Payara-env (master)$ make vars
+Payara-env (master)$ make init
+Payara-env (master)$ make build
+Payara-env (master)$ make post.build
 ```
 
 ## Installation

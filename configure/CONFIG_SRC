@@ -34,6 +34,7 @@ endif
 #
 SITE_TEMPLATE_PATH:=$(TOP)/site-template
 JAVA_HOME=$(shell bash $(TOP)/set_java_path.bash "$(JAVA_PATH)")
+
 #
 #
 VARS_EXCLUDES+=SRC_PATH_INFO
