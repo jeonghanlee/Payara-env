@@ -13,7 +13,7 @@ With OpenJDK 11, one can see error message such as
 
 ## Requirements
 
-* JAVA 8
+* Corretto JAVA 8
 
 Amazon provides LTS OpenJDK at <https://aws.amazon.com/corretto>. It works well with Debian 10 without any issues.
 In this repo, we use the corretto-8 version at <https://github.com/corretto/corretto-8/releases/tag/8.262.10.1>.
@@ -21,7 +21,7 @@ In this repo, we use the corretto-8 version at <https://github.com/corretto/corr
 ```bash
 $ wget -c https://corretto.aws/downloads/resources/8.262.10.1/java-1.8.0-amazon-corretto-jdk_8.262.10-1_amd64.deb
 $ sudo apt install ./java-1.8.0-amazon-corretto-jdk_8.262.10-1_amd64.deb
-$ sudo update-alternative --config java
+$ sudo update-alternatives --config java
 There are 3 choices for the alternative java (providing /usr/bin/java).
 
   Selection    Path                                                  Priority   Status
@@ -32,6 +32,26 @@ There are 3 choices for the alternative java (providing /usr/bin/java).
   3            /usr/lib/jvm/java-11-openjdk-amd64/bin/java            1111      manual mode
 
 Press <enter> to keep the current choice[*], or type selection number: 1
+```
+
+* Julu JAVA 8
+
+<https://www.azul.com>
+
+```bash
+$ wget -c https://cdn.azul.com/zulu/bin/zulu8.48.0.51-ca-jdk8.0.262-linux_amd64.deb
+$ sudo apt install ./zulu8.48.0.51-ca-jdk8.0.262-linux_amd64.deb
+$  sudo update-alternatives --config java
+There are 3 choices for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                                  Priority   Status
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-1.8.0-amazon-corretto/jre/bin/java   10800262  auto mode
+  1            /usr/lib/jvm/java-1.8.0-amazon-corretto/jre/bin/java   10800262  manual mode
+  2            /usr/lib/jvm/java-11-openjdk-amd64/bin/java            1111      manual mode
+* 3            /usr/lib/jvm/zulu-8-amd64/jre/bin/java                 1804800   manual mode
+
+Press <enter> to keep the current choice[*], or type selection number:
 ```
 
 ## Build
@@ -94,9 +114,9 @@ Payara-env (master)$ systemctl status payara
 ## Rules
 
 ```bash
-make sd_start (systemctl start payara)
-make sd_status (systemctl status payara)
-make sd_stop (systemctl stop payara)
-make sd_restart (systemctrl restart payara)
-make uninstall
+make sd_start          : systemctl start payara
+make sd_status         : systemctl status payara
+make sd_stop           : systemctl stop payara
+make sd_restart        : systemctrl restart payara
+make uninstall         : Uninstall and remove the payara
 ```

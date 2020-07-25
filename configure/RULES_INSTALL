@@ -8,7 +8,7 @@ src_install: src_version src_preinst
 	$(if $(wildcard $(INSTALL_LOCATION)), $(QUIET)$(SUDO) mv $(INSTALL_LOCATION) $(INSTALL_LOCATION)_backup_$$(date +%Y%m%d-%H%M%S))
 	$(QUIET)$(SUDO) install -d $(INSTALL_LOCATION)
 	$(QUIET)$(SUDO) $(INSTALL_DATA) -b $(SITE_TEMPLATE_PATH)/.versions  $(INSTALL_LOCATION)/
-	$(QUIET)$(SUDO) cp -rp $(SRC_TARGET)/*  $(INSTALL_LOCATION)/
+	$(QUIET)$(SUDO) cp -rp $(SRC_TARGET)/*        $(INSTALL_LOCATION)/
 	$(QUIET)$(SUDO)	chown -R $(USERID):$(GROUPID) $(INSTALL_LOCATION)
 
 ## Stop, disable systemd serivce, and uninstall

@@ -9,7 +9,18 @@ uninstall.jdk:
 	$(QUIET) sudo apt remove java-1.8.0-amazon-corretto-jdk
 
 get.jdk:
-	$(QUIET) wget https://corretto.aws/downloads/resources/8.262.10.1/java-1.8.0-amazon-corretto-jdk_8.262.10-1_amd64.deb
+	$(QUIET) wget -c https://corretto.aws/downloads/resources/8.262.10.1/java-1.8.0-amazon-corretto-jdk_8.262.10-1_amd64.deb
 
 clean.jdk:
 	$(QUIET) rm -rf *-amazon-corretto-*_amd64.deb*
+
+.PHONY: get.jdbc clean.jdbc install.jdbc
+get.jdbc:
+	$(QUIET) wget -c https://downloads.mariadb.com/Connectors/java/connector-java-2.6.1/mariadb-java-client-2.6.1.jar
+
+clean.jdbc:
+	$(QUIET) rm -rf mariadb-java-*.jar
+
+# build.post
+install.jdbc:
+	$(QUIET) $(INSTALL_755) mariadb-java-*.jar $(SRC_TARGET)/glassfish/domains/production/lib/

@@ -3,6 +3,7 @@
 INSTALL:= install
 INSTALL_PROGRAM:=$(INSTALL)
 INSTALL_DATA:=$(INSTALL) -m 644
+INSTALL_755:=$(INSTALL) -m 755
 #
 # IF INSTALL_LOCATIOIN is not WRITABLE, SUDO and SUDOBASH should be used 
 # SUDO_INFO 1 : SUDO is needed (NOT writable)

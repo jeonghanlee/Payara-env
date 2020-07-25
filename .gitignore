@@ -49,3 +49,5 @@ auto_positions.sav*
 Payara-src
 *-amazon-corretto-*_amd64.deb*
 *.service
+mariadb-java-*.jar
+zulu*.deb*

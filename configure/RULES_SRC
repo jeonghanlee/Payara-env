@@ -48,12 +48,15 @@ endif
 
 ## Build Source
 build:
+ifneq ($(wildcard $(SRC_PATH)/.*),)
 	$(QUIET)mvn -f $(SRC_PATH)/pom.xml -am \
-	-B -V -ff -q clean install -PQuickBuild \
+	-B -V -ff  clean install -PQuickBuild \
 	-Dmaven.test.skip=true \
 	-Dmaven.javadoc.skip=true \
 	-Dbuild.number=$(SRC_VERSION) 
-
+else
+	$(QUIET)echo "There is no $(SRC_PATH). Please make init first."
+endif
 
 build.pre:
 	$(QUIET) rm -rf ~/.m2/repository/* /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
@@ -63,7 +66,7 @@ build.pre:
 
 
 ## Update passwords keystore and cacerts
-build.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean
+build.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean install.jdbc
 
 
 
