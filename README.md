@@ -127,7 +127,7 @@ make build.pre         : Clean up .m2/repository/glassfish and others
 
 ## Maven Building Error
 
-Irregularly, I've faced the following error. it may be related with the system resources. One can try to redo with more memeory resouces, `make build.pre`, which needs more downloading time, use the local maven `make install.maven`, or all of them. 
+Irregularly, I've faced the following error. it may be related with the system resources. One can try to redo with more memeory resouces, `make build.pre`, which needs more downloading time, use the local maven `make install.maven`, or all of them.
 
 ```bash
 [INFO] Security Related Implementation for GlassFish 5.192  SKIPPED
@@ -143,5 +143,5 @@ Irregularly, I've faced the following error. it may be related with the system r
 [INFO] Finished at: 2020-07-29T23:13:40-07:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.glassfish.build:glassfishbuild-maven-plugin:3.2.20.payara-p1:exec (create-glassfish-domain) on project payara: Execution create-glassfish-domain of goal org.glassfish.build:glassfishbuild-maven-plugin:3.2.20.payara-p1:exec failed: null returned: 1 -> [Help 1]
-[ERROR] 
+[ERROR]
 ```
