@@ -1,18 +1,23 @@
 
 
 
-JAVA_PATH=/usr/bin
-
-## Elasticsearch Server
-#ES_HOST:=localhost
-#ES_PORT:=9200
+JAVA_HOME:=/usr/lib/jvm/zulu-8-amd64
+MVN_HOME:=/usr/share/maven
 
 
-#CF_PRTO:=http
-#CF_HOST:=localhost
-#CF_PORT:=8080
 #
-#
+# We cannot use the latest mariadb jdbc connector due to the following error:
+# 
+# Internal Exception: java.sql.SQLSyntaxErrorException: (conn=270) Table 'cdb.SEQUENCE' doesn't exist
+# Error Code: 1146
+# Call: UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + ? WHERE SEQ_NAME = ?
+#	bind => [2 parameters bound]
+# Query: DataModifyQuery(name="SEQ_GEN_IDENTITY" sql="UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + ? WHERE SEQ_NAME = ?")
+# The following jira describe the same issue which I have
+# 
+# https://jira.mariadb.org/browse/CONJ-702
+
+JAVA_CONNECTOR_VERSION:=2.3.0
 
 # These allow developers to override the variable
 -include $(TOP)/../CONFIG_COMMON.local

@@ -18,7 +18,7 @@ endif
 
 .PHONY: get.jdbc clean.jdbc install.jdbc
 get.jdbc:
-	$(QUIET) wget -c https://downloads.mariadb.com/Connectors/java/connector-java-2.6.1/mariadb-java-client-2.6.1.jar
+	$(QUIET) wget -c https://downloads.mariadb.com/Connectors/java/connector-java-$(JAVA_CONNECTOR_VERSION)/mariadb-java-client-$(JAVA_CONNECTOR_VERSION).jar
 
 ifneq ($(wildcard mariadb-java-*.jar),)
 clean.jdbc:
