@@ -25,8 +25,8 @@ jobs:
         mvn --version
     - run: sudo apt-get install make tree git 
     - run: |
-        echo "JAVA_HOME:=/opt/hostedtoolcache/jdk/8.0.262/x64" > configure/CONFIG_COMMON.local
-        echo "MVN_HOME:=/opt/hostedtoolcache/jdk/8.0.262/x64" > configure/CONFIG_COMMON.local
+        echo "JAVA_HOME:=/opt/hostedtoolcache/jdk/8.0.262/x64"  > configure/CONFIG_COMMON.local
+        echo "MAVEN_HOME:=/usr/share/apache-maven-3.6.3"       >> configure/CONFIG_COMMON.local
         make vars
         java -version
         echo $JAVA_HOME

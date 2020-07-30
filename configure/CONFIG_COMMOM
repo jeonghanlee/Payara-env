@@ -2,7 +2,7 @@
 
 
 JAVA_HOME:=/usr/lib/jvm/zulu-8-amd64
-MVN_HOME:=/usr/share/maven
+MAVEN_HOME:=/usr/share/maven
 
 
 #
