@@ -44,10 +44,15 @@ else
 	$(QUIET)echo "There is no $(SRC_PATH)."
 endif
 
-.PHONY: build build.pre conf
+.PHONY: build.pre build compile compile.post
+
+build.pre:
+	$(QUIET) rm -rf ~/.m2/repository/org/glassfish /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
 
 ## Build Source
-build:
+build: compile compile.post
+
+compile:
 ifneq ($(wildcard $(SRC_PATH)/.*),)
 	$(QUIET)$(MAVEN_PATH)/mvn -f $(SRC_PATH)/pom.xml -am \
 	-B -V -ff  clean install -PQuickBuild \
@@ -58,15 +63,10 @@ else
 	$(QUIET)echo "There is no $(SRC_PATH). Please make init first."
 endif
 
-build.pre:
-	$(QUIET) rm -rf ~/.m2/repository/org/glassfish /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
-
-
-.PHONEY: build.post change.masterpassword change.adminpassword keystore.update certs.update certs.clean
-
+.PHONEY: conf compile.post change.masterpassword change.adminpassword keystore.update certs.update certs.clean
 
 ## Update passwords keystore and cacerts
-build.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean install.jdbc
+compile.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean install.jdbc
 
 
 

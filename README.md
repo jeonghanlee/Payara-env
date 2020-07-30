@@ -60,7 +60,6 @@ Press <enter> to keep the current choice[*], or type selection number:
 Payara-env (master)$ make vars
 Payara-env (master)$ make init
 Payara-env (master)$ make build
-Payara-env (master)$ make build.post
 ```
 
 ## Installation
@@ -121,4 +120,28 @@ make sd_restart        : systemctrl restart payara
 make uninstall         : Uninstall and remove the payara
 make install.maven     : Install and set it up the local MAVEN version in .maven path
 make clean.maven       : Remove the local MAVEN
+make compile           : Compile Payara
+make compile.post      : Update configurations, and add MariaDB JTBC connector
+make build.pre         : Clean up .m2/repository/glassfish and others
+```
+
+## Maven Building Error
+
+Irregularly, I've faced the following error. it may be related with the system resources. One can try to redo with more memeory resouces, `make build.pre`, which needs more downloading time, use the local maven `make install.maven`, or all of them. 
+
+```bash
+[INFO] Security Related Implementation for GlassFish 5.192  SKIPPED
+[INFO] GlassFish Tests related modules 5.192 .............. SKIPPED
+[INFO] btrace jar files 5.192 ............................. SKIPPED
+[INFO] GlassFish Flashlight Client 5.192 .................. SKIPPED
+[INFO] Flashlight 5.192 ................................... SKIPPED
+[INFO] Payara Project 5.192 ............................... SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:31 min
+[INFO] Finished at: 2020-07-29T23:13:40-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.glassfish.build:glassfishbuild-maven-plugin:3.2.20.payara-p1:exec (create-glassfish-domain) on project payara: Execution create-glassfish-domain of goal org.glassfish.build:glassfishbuild-maven-plugin:3.2.20.payara-p1:exec failed: null returned: 1 -> [Help 1]
+[ERROR] 
 ```
