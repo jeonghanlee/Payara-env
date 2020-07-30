@@ -38,6 +38,5 @@ jobs:
     - run: make build
     - run : |
         make get.jdbc
-        make build.post
         make install
         make exist
