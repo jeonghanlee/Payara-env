@@ -119,4 +119,6 @@ make sd_status         : systemctl status payara
 make sd_stop           : systemctl stop payara
 make sd_restart        : systemctrl restart payara
 make uninstall         : Uninstall and remove the payara
+make install.maven     : Install and set it up the local MAVEN version in .maven path
+make clean.maven       : Remove the local MAVEN
 ```

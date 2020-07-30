@@ -1,0 +1,4 @@
+
+
+MAVEN_HOME_LOCAL:=$(TOP)/.maven
+MAVEN_TAR_GZ:=apache-maven-$(MAVEN_VERSION)-bin.tar.gz

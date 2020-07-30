@@ -19,7 +19,8 @@ MAVEN_HOME:=/usr/share/maven
 
 JAVA_CONNECTOR_VERSION:=2.3.0
 
+MAVEN_VERSION=3.6.3
+
 # These allow developers to override the variable
 -include $(TOP)/../CONFIG_COMMON.local
 -include $(TOP)/configure/CONFIG_COMMON.local
-

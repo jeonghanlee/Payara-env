@@ -51,3 +51,7 @@ Payara-src
 *.service
 mariadb-java-*.jar
 zulu*.deb*
+*.gz
+.maven
+maven
+

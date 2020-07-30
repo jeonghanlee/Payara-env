@@ -32,3 +32,22 @@ clean.jdbc:
 install.jdbc:
 
 endif
+
+
+.PHONY: install.maven get.maven extract.maven conf.maven clean.maven
+
+install.maven: clean.maven get.maven extract.maven conf.maven
+
+get.maven:
+	$(QUIET)wget -c http://apache.spinellicreations.com/maven/maven-3/$(MAVEN_VERSION)/binaries/$(MAVEN_TAR_GZ)
+
+extract.maven:
+	$(QUIET)mkdir -p $(MAVEN_HOME_LOCAL)
+	$(QUIET)tar -C $(MAVEN_HOME_LOCAL) --strip-component=1 -xzf $(MAVEN_TAR_GZ) apache-maven-$(MAVEN_VERSION)
+	
+conf.maven:
+	$(QUIET)echo "MAVEN_HOME:=$(MAVEN_HOME_LOCAL)" > $(TOP)/configure/CONFIG_COMMON.local
+
+clean.maven:
+	-rm -rf $(MAVEN_HOME_LOCAL) $(TOP)/configure/CONFIG_COMMON.local $(MAVEN_TAR_GZ)
+	

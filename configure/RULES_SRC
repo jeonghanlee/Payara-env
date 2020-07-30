@@ -59,7 +59,7 @@ else
 endif
 
 build.pre:
-	$(QUIET) rm -rf ~/.m2/repository/* /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
+	$(QUIET) rm -rf ~/.m2/repository/org/glassfish /tmp/{arquillian*,javaee*,fileinstall*,surefire*,payara*,cargo*}
 
 
 .PHONEY: build.post change.masterpassword change.adminpassword keystore.update certs.update certs.clean
@@ -124,3 +124,8 @@ certs.import:
 
 certs.clean:
 	rm -f $(SITE_TEMPLATE_PATH)/*.cert
+
+
+clean.local:
+	@-rm -f $(TOP)/*.local
+	@-rm -f $(TOP)/configure/*.local
