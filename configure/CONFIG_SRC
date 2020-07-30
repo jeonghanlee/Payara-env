@@ -34,7 +34,10 @@ endif
 #
 #
 SITE_TEMPLATE_PATH:=$(TOP)/site-template
-JAVA_HOME=$(shell bash $(TOP)/set_java_path.bash "$(JAVA_PATH)")
+#JAVA_HOME=$(shell bash $(TOP)/set_java_path.bash "$(JAVA_PATH)")
+
+
+DOMAIN_XML:=$(SRC_PATH)/appserver/distributions/payara/target/stage/payara5/glassfish/domains/production/config/domain.xml
 
 #
 #
