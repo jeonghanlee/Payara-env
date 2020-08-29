@@ -32,9 +32,9 @@ Group=@GROUPID@
 Type=oneshot
 RemainAfterExit=yes
 #
-ExecStart=@JAVA_PATH@/java -XX:+IgnoreUnrecognizedVMOptions -jar @INSTALL_LOCATION@/glassfish/lib/client/appserver-cli.jar start-domain production
-ExecReload=@JAVA_PATH@/java -XX:+IgnoreUnrecognizedVMOptions -jar @INSTALL_LOCATION@/glassfish/lib/client/appserver-cli.jar restart-domain production
-ExecStop=@JAVA_PATH@/java -XX:+IgnoreUnrecognizedVMOptions -jar @INSTALL_LOCATION@/glassfish/lib/client/appserver-cli.jar stop-domain production
+ExecStart=@JAVA_PATH@/java -XX:+IgnoreUnrecognizedVMOptions @JAVA_OPTS@ -jar @INSTALL_LOCATION@/glassfish/lib/client/appserver-cli.jar start-domain production
+ExecReload=@JAVA_PATH@/java -XX:+IgnoreUnrecognizedVMOptions @JAVA_OPTS@ -jar @INSTALL_LOCATION@/glassfish/lib/client/appserver-cli.jar restart-domain production
+ExecStop=@JAVA_PATH@/java -XX:+IgnoreUnrecognizedVMOptions @JAVA_OPTS@ -jar @INSTALL_LOCATION@/glassfish/lib/client/appserver-cli.jar stop-domain production
 #
 TimeoutStartSec=300
 TimeoutStopSec=30
