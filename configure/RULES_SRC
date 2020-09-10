@@ -82,7 +82,8 @@ change.masterpassword:
 	rm -f $(SITE_TEMPLATE_PATH)/.password
 
 change.adminpassword:
-	@echo "AS_ADMIN_PASSWORD=$(OLD_ADMIN_PASSWORD)\nAS_ADMIN_NEWPASSWORD=$(ADMIN_PASSWORD)" > $(SITE_TEMPLATE_PATH)/.adminpassword
+	@echo "AS_ADMIN_PASSWORD=$(OLD_ADMIN_PASSWORD)"  > $(SITE_TEMPLATE_PATH)/.adminpassword
+	@echo "AS_ADMIN_NEWPASSWORD=$(ADMIN_PASSWORD)"  >> $(SITE_TEMPLATE_PATH)/.adminpassword
 	sh "$(SRC_TARGET)/bin/asadmin" --user $(ADMIN_USER) --passwordfile=$(SITE_TEMPLATE_PATH)/.adminpassword change-admin-password --domaindir $(SRC_TARGET)/glassfish/domains/ --domain_name production
 	rm -f $(SITE_TEMPLATE_PATH)/.adminpassword
 
