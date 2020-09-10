@@ -76,7 +76,8 @@ conf:
 #	$(SRC_PATH)/appserver/distributions/distributions.xml
 
 change.masterpassword:
-	@echo "AS_ADMIN_MASTERPASSWORD=$(OLD_MASTER_PASSWORD)\nAS_ADMIN_NEWMASTERPASSWORD=$(MASTER_PASSWORD)" > $(SITE_TEMPLATE_PATH)/.password
+	@echo "AS_ADMIN_MASTERPASSWORD=$(OLD_MASTER_PASSWORD)" > $(SITE_TEMPLATE_PATH)/.password 
+	@echo "AS_ADMIN_NEWMASTERPASSWORD=$(MASTER_PASSWORD)" >> $(SITE_TEMPLATE_PATH)/.password
 	sh $(SRC_TARGET)/bin/asadmin change-master-password --passwordfile=$(SITE_TEMPLATE_PATH)/.password --savemasterpassword=true --domaindir $(SRC_TARGET)/glassfish/domains/ production
 	rm -f $(SITE_TEMPLATE_PATH)/.password
 
