@@ -54,4 +54,5 @@ zulu*.deb*
 *.gz
 .maven
 maven
+*password
 
