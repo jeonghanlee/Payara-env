@@ -1,9 +1,7 @@
 
-### channelfinder installation location
+### Payara installation location
 
-INSTALL_LOCATION=/opt/$(APPNAME)
-
-
+INSTALL_LOCATION=/opt/$(APPNAME)/$(SRC_VERSION)
 
 # ### Placeholder
 # ### This variable will be replaced by reading a pom.xml file or others

@@ -54,7 +54,7 @@ build: compile compile.post
 
 compile:
 ifneq ($(wildcard $(SRC_PATH)/.*),)
-	$(QUIET)$(MAVEN_PATH)/mvn -f $(SRC_PATH)/pom.xml -am \
+	JAVA_HOME=$(JAVA_HOME) $(MAVEN_PATH)/mvn -f $(SRC_PATH)/pom.xml -am \
 	-B -V -ff  clean install -PQuickBuild \
 	-Dmaven.test.skip=true \
 	-Dmaven.javadoc.skip=true \
