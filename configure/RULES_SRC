@@ -66,7 +66,7 @@ endif
 .PHONEY: conf compile.post change.masterpassword change.adminpassword keystore.update certs.update certs.clean
 
 ## Update passwords keystore and cacerts
-compile.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean install.jdbc update.domain domain.log.clean
+compile.post: change.masterpassword change.adminpassword keystore.update certs.update certs.clean get.jdbc install.jdbc update.domain domain.log.clean
 
 
 
