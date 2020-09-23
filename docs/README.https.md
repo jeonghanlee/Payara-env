@@ -13,6 +13,6 @@ By default, without a web appliacation, one can access it through <http://localh
 
 * Go <https://localhost:4848/common/appServer/securityAdmin.jsf> and hit `Enable Secure Admin`. Or go `Configurations > server-config > HTTP Service > admin-listener > Enabled`.
 
-|![Secure Payara Server](docs/https_admin.png)|
+|![Secure Payara Server](https_admin.png)|
 | :---: |
 |**Figure 1** Edit HTTP Listener for Admin.|
