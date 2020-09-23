@@ -3,17 +3,11 @@
 ![Build](https://github.com/jeonghanlee/Payara-env/workflows/Build/badge.svg)
 ![Linter Run](https://github.com/jeonghanlee/Payara-env/workflows/Linter%20Run/badge.svg)
 
-Even if the most latest version payara-server-5.2020.3, one needs `java 8` in order to build the Payara from its github repository.
-With OpenJDK 11, one can see error message such as
-
-```bash
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project asadmin-audit: Compilation failure
-[ERROR] /home/jhlee/gitsrc/Payara-env/Payara-src/nucleus/payara-modules/asadmin-audit/src/main/java/fish/payara/audit/admin/SetAdminAuditServiceNotifierConfiguration.java:[168,67] incompatible types: org.jvnet.hk2.config.ConfigBeanProxy cannot be converted to fish.payara.nucleus.notification.configuration.Notifier
-```
+This is the Payara 5.192 configuration environment with CentOS 8 and Debian 10. It may works with other versions (more latest one), which is not tested.
 
 ## Requirements
 
-* Java 8 : Compiling the Payara 5.192
+* Java 8  : Compiling the Payara 5.192
 * Java 11 : Running the Payara 5.192
 * Maven 3
 
@@ -43,8 +37,18 @@ tree -aL 1 /opt/payara/5.192
 ├── javadb
 ├── META-INF
 ├── mq
+├── prefs
 ├── README.txt
 └── .versions
+```
+
+## Reinstallation
+
+If one would like to reinstall everything from scratch, please run `make reinstall`. It does `make uninstall` and `make install`.
+Thus, old payara installation will be replaced with the new one completely. All web application will be removed.
+
+```bash
+Payara-env (master)$ make reinstall
 ```
 
 ## Run the Payra service
@@ -58,14 +62,14 @@ Payara-env (master)$ systemctl start payara
 Payara-env (master)$ systemctl status payara
 ● payara.service - payara Service
    Loaded: loaded (/etc/systemd/system/payara.service; enabled; vendor preset: enabled)
-   Active: active (exited) since Mon 2020-07-20 13:54:36 PDT; 1min 48s ago
+   Active: active (exited) since Wed 2020-09-23 14:58:58 PDT; 32min ago
      Docs: https://docs.payara.fish/community/docs/5.192/README.html
-  Process: 14130 ExecStart=/usr/bin/java -XX:+IgnoreUnrecognizedVMOptions -jar /opt/payara/glassfish/lib/client/appserver-cli.jar start-domain productio
- Main PID: 14130 (code=exited, status=0/SUCCESS)
-    Tasks: 126 (limit: 4915)
-   Memory: 1.6G
+  Process: 934 ExecStart=/opt/java-env/JDK11/bin/java -XX:+IgnoreUnrecognizedVMOptions -jar /opt/payara/5.192/glassfish/lib/client/appserver-cli.jar start-domain production (code=exi
+ Main PID: 934 (code=exited, status=0/SUCCESS)
+    Tasks: 131 (limit: 4915)
+   Memory: 1.0G
    CGroup: /system.slice/payara.service
-           └─14147 /usr/lib/jvm/java-1.8.0-amazon-corretto/bin/java -cp /opt/payara/glassfish/modules/glassfish.jar -XX:+UnlockDiagnosticVMOptions -XX:M
+           └─1411 /opt/java-env/JDK11/bin/java -cp /opt/payara/5.192/glassfish/modules/glassfish.jar -XX:+UnlockDiagnosticVMOptions --add-opens=jdk.management/com.sun.management.inte
            .....
 ```
 
@@ -91,6 +95,38 @@ make compile           : Compile Payara
 make compile.post      : Update configurations, and add MariaDB JTBC connector
 make build.pre         : Clean up .m2/repository/glassfish and others
 ```
+
+## Production
+
+This payara environment only run the production domain through systemd service. Thus, `systemctl start payara` means `asadmin start-domain production`. Thus, the default payara `jvm_options` memory options are large such as
+
+```bash
+# Original Configuration
+JAVA_HEAPSIZE="2g"
+MAX_METASPACE_SIZE="2g"
+```
+
+However, this is too much for my personal computer, so I reduce them to
+
+```bash
+NEW_JAVA_HEAPSIZE="1g"
+MAX_METASPACE_SIZE="512m"
+```
+
+Therefore, if one would like to deploy it within a production environment, please add the relevant memory size in `configure/CONFIG_SITE.local`.
+In addtion, the default MASTER and ADMIN passwords are not good, so, please use the secure passowrds for them also. Here is the example `CONFIG_SITE.local` file as follows:
+
+```bash
+# Revert the original PayaraConfiguration
+JAVA_HEAPSIZE="2g"
+NEW_JAVA_HEAPSIZE="2g"
+MAX_METASPACE_SIZE="2g"
+
+MASTER_PASSWORD:=thisissecurepassword
+ADMIN_PASSWORD:=thisissecurepassword
+```
+
+Note that `_PASSWORD` varialbes within several places in `Makefile` environment through variables and shell environment. Please make sure special characters can be handled by them together properly.
 
 ## Errors and Warnings
 

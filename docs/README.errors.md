@@ -1,5 +1,19 @@
-# Errors
+# Errors and Warnings
 
+Here is the collection of errors and warnings which I saw during the configuration.
+
+## JAVA 8
+
+Even if the most latest version payara-server-5.2020.3, one needs `java 8` in order to build the Payara from its github repository.
+With OpenJDK 11, one can see error message such as
+
+```bash
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project asadmin-audit: Compilation
+failure
+[ERROR] /home/jhlee/gitsrc/Payara-env/Payara-src/nucleus/payara-modules/asadmin-audit/src/main/java/fish/payara/audit/admin/
+SetAdminAuditServiceNotifierConfiguration.java:[168,67] incompatible types: org.jvnet.hk2.config.ConfigBeanProxy cannot be converted to fish.payara.
+nucleus.notification.configuration.Notifier
+```
 
 ## Maven Building Error
 
@@ -53,10 +67,9 @@ java.lang.NoClassDefFoundError: Could not initialize class sun.security.ssl.SSLE
   at java.lang.Thread.run(Thread.java:748)
 ```
 
-
 ## Java Prefs Warnings
 
-Payara service is running with `payara` user within systemd, so it doesn't have permissions to access `/etc/.java/.systemPrefs/`. Thus, we added the extrac java option `-Djava.util.prefs.userRoot=/opt/payara/5.192/prefs` to Payara java_options within `domain.xml` file to remove the following messages within `server.log`. 
+Payara service is running with `payara` user within systemd, so it doesn't have permissions to access `/etc/.java/.systemPrefs/`. Thus, we added the extrac java option `-Djava.util.prefs.userRoot=/opt/payara/5.192/prefs` to Payara java_options within `domain.xml` file to remove the following messages within `server.log`.
 
 ```bash
 2020-09-23T14:18:18.954-0700] [Payara 5.192] [WARNING] [] [java.util.prefs] [tid: _ThreadID=464 _ThreadName=Timer-1] [timeMillis: 1600895898954] [levelValue: 900] [[
