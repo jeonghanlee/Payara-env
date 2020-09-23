@@ -1,4 +1,5 @@
 
-
+# This is for the local MAVEN version
 MAVEN_HOME_LOCAL:=$(TOP)/.maven
+MAVEN_VERSION=3.6.3
 MAVEN_TAR_GZ:=apache-maven-$(MAVEN_VERSION)-bin.tar.gz

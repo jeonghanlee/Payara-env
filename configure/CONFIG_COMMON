@@ -1,8 +1,10 @@
 
 
 
-JAVA_HOME:=/usr/lib/jvm/zulu-8-amd64
-MAVEN_HOME:=/usr/share/maven
+BUILD_JAVA_HOME:=/opt/java-env/JDK8
+RUN_JAVA_HOME:=/opt/java-env/JDK11
+
+MAVEN_HOME:=/opt/java-env/MAVEN363
 
 
 #
@@ -18,8 +20,6 @@ MAVEN_HOME:=/usr/share/maven
 # https://jira.mariadb.org/browse/CONJ-702
 
 JAVA_CONNECTOR_VERSION:=2.3.0
-
-MAVEN_VERSION=3.6.3
 
 # These allow developers to override the variable
 -include $(TOP)/../CONFIG_COMMON.local

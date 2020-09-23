@@ -1,9 +1,5 @@
 # Due to .local file, we have to define them out of .local configuration files.
 #
-#
-#CF_URL:=$(CF_HOST):$(CF_PORT)/ChannelFinder
-#CF_FULL_URL:=$(CF_PRTO)://$(CF_URL)
-
 ### One may not need to change the following variables
 ### SRC_GITURL used for git clone
 SRC_GITURL:=$(SRC_URL)/$(SRC_NAME)
@@ -14,10 +10,9 @@ DOCURL:=https://docs.payara.fish/community/docs/$(SRC_VERSION)/README.html
 
 SRC_TARGET:=$(SRC_PATH)/appserver/distributions/payara/target/stage/payara5
 
-CDB_HOSTNAME=$(shell hostname -f)
+CDB_HOSTNAME=$(shell hostname --fqdn)
 
-PAYARA_DN_NAME="CN=$(CDB_HOSTNAME)"
-
+PAYARA_DN_NAME="CN=$(CDB_HOSTNAME),O=BerkeleyLab,L=Berkeley,S=CA,C=US"
 
 # These allow developers to override the variable
 -include $(TOP)/../CONFIG_VARS.local

@@ -5,7 +5,7 @@
 #
 sd_config:
 	$(QUIET)sed -e "s:@TARGET_NAME@:$(APPNAME):g" \
-		-e "s:@JAVA_PATH@:$(JAVA_PATH):g" \
+		-e "s:@JAVA_PATH@:$(RUN_JAVA_HOME)/bin:g" \
 		-e "s:@JAVA_OPTS@:$(JAVA_OPTS):g" \
 		-e "s:@USERID@:$(USERID):g"      \
 		-e "s:@GROUPID@:$(GROUPID):g"    \
