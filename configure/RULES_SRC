@@ -132,7 +132,12 @@ update.domain:
 	$(QUIET)sed -i~ \
 			-e "s:Xms$(JAVA_HEAPSIZE):Xms$(NEW_JAVA_HEAPSIZE):g" \
 			-e "s:Xmx$(JAVA_HEAPSIZE):Xmx$(NEW_JAVA_HEAPSIZE):g" \
-			-e "s:MaxMetaspaceSize=2g:MaxMetaspaceSize=$(MAX_METASPACE_SIZE):g" $(DOMAIN_XML)
+			-e "s:MaxMetaspaceSize=2g:MaxMetaspaceSize=$(MAX_METASPACE_SIZE):g" \
+			-e "/<jvm-options>-Djava.awt.headless=.*/a <jvm-options>$(JAVA_OPTS)</jvm-options>" \
+			$(DOMAIN_XML)
+
+show.domain:
+	$(QUIET)cat -b $(DOMAIN_XML)
 
 domain.log.clean:
 	-rm -f $(SRC_TARGET)/glassfish/domains/production/logs/server.log

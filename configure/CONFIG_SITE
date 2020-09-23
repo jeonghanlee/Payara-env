@@ -7,7 +7,8 @@ INSTALL_LOCATION=/opt/$(APPNAME)/$(SRC_VERSION)
 ## Could not lock User prefs
 ## Couldn't flush user prefs: java.util.prefs.BackingStoreException:
 JAVA_PREFS_PATH=$(INSTALL_LOCATION)/prefs
-JAVA_OPTS:=-Djava.util.prefs.systemRoot=$(JAVA_PREFS_PATH) -Djava.util.prefs.userRoot=$(JAVA_PREFS_PATH)
+# We have to put this option within domain.xml file
+JAVA_OPTS:=-Djava.util.prefs.userRoot=$(JAVA_PREFS_PATH)
 # # Two more potential interesting options are
 # # JAVA_OPTS=-XX:MaxMetaspaceSize=256M -XX:+UseG1GC -Xms2G -Xmx2G
 
