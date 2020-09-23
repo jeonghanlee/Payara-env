@@ -93,6 +93,8 @@ keystore.convert:
 keystore.inspect:
 	$(JAVA_PATH)/keytool -list -keystore $(SRC_TARGET)/glassfish/domains/production/config/keystore.jks -storepass $(MASTER_PASSWORD)
 
+# s1as               : http-listener-2 (default 8181) 
+# glassfish-instance : admin-listener  (default 4848)
 keystore.delete:
 	$(JAVA_PATH)/keytool -delete -alias s1as -keystore $(SRC_TARGET)/glassfish/domains/production/config/keystore.jks -storepass $(MASTER_PASSWORD)
 	$(JAVA_PATH)/keytool -delete -alias glassfish-instance -keystore $(SRC_TARGET)/glassfish/domains/production/config/keystore.jks -storepass $(MASTER_PASSWORD)
